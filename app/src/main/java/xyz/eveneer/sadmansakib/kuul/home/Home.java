@@ -1,7 +1,9 @@
-package xyz.eveneer.sadmansakib.kuul;
+package xyz.eveneer.sadmansakib.kuul.home;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import xyz.eveneer.sadmansakib.kuul.R;
 
 public class Home extends AppCompatActivity {
 
