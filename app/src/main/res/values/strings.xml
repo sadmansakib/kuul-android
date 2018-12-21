@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Kuul</string>
     <string name="s_o_s">Help</string>
+    <string name="made_by_eveneer">Made by Eveneer</string>
 </resources>
