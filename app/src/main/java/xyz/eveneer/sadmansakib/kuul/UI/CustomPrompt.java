@@ -15,9 +15,9 @@ import static android.content.ContentValues.TAG;
 
 public class CustomPrompt extends Dialog implements View.OnClickListener {
 
-    public Activity current_activity;
+    private Activity current_activity;
     public Dialog dialog;
-    public AppCompatButton __callme, __textme;
+    private AppCompatButton __callme, __textme;
 
     public CustomPrompt(Activity activity){
         super(activity);
@@ -40,11 +40,11 @@ public class CustomPrompt extends Dialog implements View.OnClickListener {
         switch (v.getId()){
             case R.id.call_button:
                 Toast.makeText(getContext(),"You will be notified via call",Toast.LENGTH_LONG).show();
-                dialog.dismiss();
+                dismiss();
                 break;
             case R.id.message_button:
                 Toast.makeText(getContext(),"You will be notified via message",Toast.LENGTH_LONG).show();
-                dialog.dismiss();
+                dismiss();
             default:
                 Log.d(TAG, "onClick: ");
         }
