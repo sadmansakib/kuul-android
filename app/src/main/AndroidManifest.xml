@@ -3,17 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="xyz.eveneer.sadmansakib.kuul">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
-        android:label="@string/app_name"
         android:icon="@drawable/logo"
-        android:supportsRtl="true"
+        android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".home.Home">
-        </activity>
+
+        <meta-data
+            android:name="com.facebook.accountkit.ApplicationName"
+            android:value="@string/app_name"/>
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/fb_app_id"/>
+
+        <meta-data
+            android:name="com.facebook.accountkit.ClientToken"
+            android:value="@string/account_kit_client_token"/>
+        
+        <activity android:name="com.facebook.accountkit.ui.AccountKitActivity"/>
+
+        <activity android:name=".home.Home" />
         <activity
             android:name=".splash.Splash"
             android:configChanges="orientation|screenSize"
@@ -24,6 +40,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".onboarding.Tutorial" />
+        <activity android:name=".auth.UserAuth"/>
     </application>
 
 </manifest>

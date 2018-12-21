@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import xyz.eveneer.sadmansakib.kuul.R;
-import xyz.eveneer.sadmansakib.kuul.home.Home;
+import xyz.eveneer.sadmansakib.kuul.auth.UserAuth;
 
 public class Splash extends AppCompatActivity {
 
@@ -31,7 +31,7 @@ public class Splash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(),Home.class));
+                startActivity(new Intent(getApplicationContext(),UserAuth.class));
                 overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
             }
         },1000);
