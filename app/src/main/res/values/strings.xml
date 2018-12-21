@@ -2,4 +2,8 @@
     <string name="app_name">Kuul</string>
     <string name="s_o_s">Help</string>
     <string name="made_by_eveneer">Made by Eveneer</string>
+    <string name="sos_sent">SOS Sent!</string>
+    <string name="call_or_text">Would you like to recieve a Call or Text?</string>
+    <string name="call_me">Call me</string>
+    <string name="text_me">Text me</string>
 </resources>
