@@ -3,9 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="xyz.eveneer.sadmansakib.kuul">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.location.gps" />
+
 
     <application
+        android:name="Kuul"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@drawable/logo"
@@ -14,22 +20,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
-            android:value="@string/app_name"/>
-
+            android:value="@string/app_name" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/fb_app_id"/>
-
+            android:value="@string/fb_app_id" />
         <meta-data
             android:name="com.facebook.accountkit.ClientToken"
-            android:value="@string/account_kit_client_token"/>
-        
-        <activity android:name="com.facebook.accountkit.ui.AccountKitActivity"/>
+            android:value="@string/account_kit_client_token" />
 
-        <activity android:name=".home.Home" />
+        <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
         <activity
             android:name=".splash.Splash"
             android:configChanges="orientation|screenSize"
@@ -41,7 +42,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".onboarding.Tutorial" />
-        <activity android:name=".auth.UserAuth"/>
+        <activity android:name=".auth.UserAuth" />
+        <activity
+            android:name=".home.Home"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".report.report_incident" />
     </application>
 
 </manifest>

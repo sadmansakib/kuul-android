@@ -3,7 +3,7 @@
     <string name="s_o_s">Help</string>
     <string name="made_by_eveneer">Made by Eveneer</string>
     <string name="sos_sent">SOS Sent!</string>
-    <string name="call_or_text">Would you like to recieve a Call or Text?</string>
+    <string name="call_or_text">Would you like to receive a Call or Text?</string>
     <string name="call_me">Call me</string>
     <string name="text_me">Text me</string>
 
@@ -11,9 +11,66 @@
     <string name="fb_app_id">224317261820443</string>
     <string name="account_kit_client_token">78cd8a651dc7c41905c4659d28caeee1</string>
     <string name="ak_login_protocol_scheme">ak78cd8a651dc7c41905c4659d28caeee1</string>
+
     <!-- Tutorial class strings-->
     <string name="first_fragment_content">
         Kuul is an one stop service for women who are suffering from domestic violence
     </string>
     <string name="sign_in">Sign In</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="home">Home</string>
+    <string name="settings">Settings</string>
+    <string name="trusted_contacts">Trusted Contacts</string>
+    <string name="about">about</string>
+
+
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="about_us">Eveneer is an IT Firm focused on developing real life \n
+        solutions to real life problems. We are a small team of \n
+        creatives, who got together and thought that if you \n
+        could change the world by making things which \n
+        could help the society.\n\n
+        This product was made for Banglalink\'s SDG\n
+        Hackathon but it doesn\'t mean we will not try\n
+        to implement it in real life.\n\n
+        Thank you for viewing this prototype</string>
+
+    <string name="alternate_help_text">Alternatively, if you have suffered from \n
+    domestic abuse in the past,you can report \n
+        those incidents will be reported too directly from this app
+    </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ask_for_help">Ask for help</string>
+    <string name="report_an_incident">report an incident</string>
+
+    <string name="report_incident_title">If you have suffered from domestic abuse in the\n
+        past, you can report those incidents. Please tell us\n
+        who the victim was, when this incident happened,\n
+        and a short description of what happened. We will\n
+        inform the right authorities about it.</string>
+    <string name="date_of_event">Date of Event</string>
+    <string name="victim_name">Victim Name</string>
+    <string name="description_of_the_event">Description of the event</string>
+    <string name="report_this_event">report this event</string>
+    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_page_txt">Please give real information so that we can identify\n
+        You in case anything happens and you are in danger.\n
+        \n
+        \n
+        Please note that Phone Number cannot be changed.</string>
+    <string name="gender">Gender</string>
+    <string name="user_name">Name</string>
+    <string name="home_address">Home Address</string>
+
 </resources>
