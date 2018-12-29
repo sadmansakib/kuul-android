@@ -12,4 +12,8 @@ public class Constants{
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION};
     }
+
+    public static class otp{
+        public final static int APP_REQUEST_CODE= 99;
+    }
 }
