@@ -10,14 +10,26 @@
     <uses-feature android:name="android.hardware.location.gps" />
 
     <application
+        android:name=".Kuul"
         android:allowBackup="true"
+        android:fullBackupContent="false"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        android:fullBackupContent="false">
+        tools:ignore="GoogleAppIndexingWarning">
+        <meta-data
+            android:name="com.facebook.accountkit.ApplicationName"
+            android:value="@string/app_name" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/fb_app_id" />
+        <meta-data
+            android:name="com.facebook.accountkit.ClientToken"
+            android:value="@string/account_kit_client_token" />
+
+        <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
         <activity
             android:name=".Splash.Splash"
             android:theme="@style/splashTheme"
@@ -28,10 +40,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Home.Home"
+        <activity
+            android:name=".Home.Home"
             tools:ignore="InnerclassSeparator" />
-        <activity android:name=".Tutorial.Tutorial"
+        <activity
+            android:name=".Tutorial.Tutorial"
             tools:ignore="InnerclassSeparator" />
+        <activity android:name=".SignUp.SignUp"></activity>
     </application>
 
 </manifest>

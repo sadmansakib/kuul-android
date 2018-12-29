@@ -16,4 +16,8 @@ public class Constants{
     public static class otp{
         public final static int APP_REQUEST_CODE= 99;
     }
+
+    static class oAuth{
+        static  final String BASE_URL = "http://kuul.eveneer.xyz/api/";
+    }
 }

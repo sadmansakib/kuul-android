@@ -17,7 +17,7 @@ import com.facebook.accountkit.ui.LoginType;
 
 import java.util.Objects;
 
-import xyz.eveneer.sadmansakib.kuul.R;
+import xyz.eveneer.sadmansakib.kuul.SignUp.SignUp;
 
 import static xyz.eveneer.sadmansakib.kuul.Constants.otp.APP_REQUEST_CODE;
 
@@ -31,14 +31,9 @@ class SplashViewModel extends ViewModel {
                         AccountKitActivity.ResponseType.TOKEN);
         intent.putExtra(AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,configurationBuilder.build());
         activity.startActivityForResult(intent,APP_REQUEST_CODE);
-        makeTransitionAnimation(activity);
     }
 
-    private void makeTransitionAnimation(Activity activity){
-        activity.overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
-    }
-
-    void checkOTPStatus(Context context, int requestCode, Intent data) {
+    boolean checkOTPStatus(Context context, int requestCode, Intent data) {
         if (requestCode == APP_REQUEST_CODE) {
             AccountKitLoginResult loginResult =
                     Objects.requireNonNull(data)
@@ -47,25 +42,20 @@ class SplashViewModel extends ViewModel {
                 Toast.makeText(context,
                         String.valueOf(loginResult.getError()),
                         Toast.LENGTH_LONG).show();
+                return false;
             }
             else if(loginResult.wasCancelled()){
                 Toast.makeText(context,
                         "Login was cancelled",
                         Toast.LENGTH_LONG).show();
+                return false;
             }
             else if (loginResult.getAccessToken() != null){
-                Toast.makeText(context,
-                        "Success:" + loginResult.getAccessToken().getAccountId(),
-                        Toast.LENGTH_LONG).show();
-            }
-            else{
-                Toast.makeText(context,
-                        Objects.requireNonNull(loginResult.getAuthorizationCode()).substring(0,10),
-                        Toast.LENGTH_LONG).show();
+                getCurrentUserPhoneNumber();
+                return true;
             }
         }
-
-        getCurrentUserPhoneNumber();
+        return false;
     }
 
     private void getCurrentUserPhoneNumber() {
@@ -79,5 +69,9 @@ class SplashViewModel extends ViewModel {
 
             }
         });
+    }
+
+    void launchSignUp(Context applicationContext, Activity activity) {
+        activity.startActivity(new Intent(applicationContext,SignUp.class));
     }
 }
