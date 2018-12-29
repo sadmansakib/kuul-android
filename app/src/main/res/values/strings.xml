@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Kuul</string>
+
+    <!--Splash screen -->
+    <string name="made_by_eveneer">Made by Eveneer</string>
+
+</resources>
