@@ -1,10 +1,12 @@
 package xyz.eveneer.sadmansakib.kuul.Tutorial;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.hololo.tutorial.library.PermissionStep;
 import com.hololo.tutorial.library.TutorialActivity;
 
+import xyz.eveneer.sadmansakib.kuul.Home.Home;
 import xyz.eveneer.sadmansakib.kuul.R;
 
 import static xyz.eveneer.sadmansakib.kuul.Constants.tutorial.PERMISSIONS;
@@ -28,5 +30,12 @@ public class Tutorial extends TutorialActivity {
     @Override
     public void currentFragmentPosition(int i) {
 
+    }
+
+    @Override
+    public void finishTutorial() {
+        super.finishTutorial();
+        startActivity(new Intent(getApplicationContext(),Home.class));
+        finish();
     }
 }
