@@ -4,4 +4,10 @@
     <!--Splash screen -->
     <string name="made_by_eveneer">Made by Eveneer</string>
 
+    <!-- tutorial -->
+
+    <string name="tutorial_p1_content">
+        Kuul is an one stop service for women who are suffering from domestic violence
+    </string>
+
 </resources>
