@@ -1,9 +1,10 @@
 package xyz.eveneer.sadmansakib.kuul.Splash;
 
 import android.app.Activity;
-import android.arch.lifecycle.ViewModel;
-import android.content.Context;
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.widget.Toast;
 
 import com.facebook.accountkit.Account;
@@ -21,10 +22,14 @@ import xyz.eveneer.sadmansakib.kuul.SignUp.SignUp;
 
 import static xyz.eveneer.sadmansakib.kuul.Constants.otp.APP_REQUEST_CODE;
 
-class SplashViewModel extends ViewModel {
+class SplashViewModel extends AndroidViewModel {
 
-    void launchOTP(Context context, Activity activity){
-        final Intent intent =new Intent(context,AccountKitActivity.class);
+    public SplashViewModel(@NonNull Application application) {
+        super(application);
+    }
+
+    void launchOTP(Activity activity){
+        final Intent intent =new Intent(getApplication().getApplicationContext(),AccountKitActivity.class);
         AccountKitConfiguration.AccountKitConfigurationBuilder configurationBuilder =
                 new AccountKitConfiguration.AccountKitConfigurationBuilder(
                         LoginType.PHONE,
@@ -33,19 +38,19 @@ class SplashViewModel extends ViewModel {
         activity.startActivityForResult(intent,APP_REQUEST_CODE);
     }
 
-    boolean checkOTPStatus(Context context, int requestCode, Intent data) {
+    boolean checkOTPStatus(int requestCode, Intent data) {
         if (requestCode == APP_REQUEST_CODE) {
             AccountKitLoginResult loginResult =
                     Objects.requireNonNull(data)
                             .getParcelableExtra(AccountKitLoginResult.RESULT_KEY);
             if (loginResult.getError() != null){
-                Toast.makeText(context,
+                Toast.makeText(getApplication().getApplicationContext(),
                         String.valueOf(loginResult.getError()),
                         Toast.LENGTH_LONG).show();
                 return false;
             }
             else if(loginResult.wasCancelled()){
-                Toast.makeText(context,
+                Toast.makeText(getApplication().getApplicationContext(),
                         "Login was cancelled",
                         Toast.LENGTH_LONG).show();
                 return false;
@@ -71,7 +76,7 @@ class SplashViewModel extends ViewModel {
         });
     }
 
-    void launchSignUp(Context applicationContext, Activity activity) {
-        activity.startActivity(new Intent(applicationContext,SignUp.class));
+    void launchSignUp(Activity activity) {
+        activity.startActivity(new Intent(getApplication().getApplicationContext(),SignUp.class));
     }
 }

@@ -21,7 +21,7 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         splashViewModel = ViewModelProviders.of(this).get(SplashViewModel.class);
-        mHandler.postDelayed(() -> splashViewModel.launchOTP(getApplicationContext(),this),SPLASH_DELAY);
+        mHandler.postDelayed(() -> splashViewModel.launchOTP(this),SPLASH_DELAY);
         makeTransitionAnimation();
     }
 
@@ -32,7 +32,7 @@ public class Splash extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        mHandler.removeCallbacks(()-> splashViewModel.launchOTP(getApplicationContext(),this));
+        mHandler.removeCallbacks(()-> splashViewModel.launchOTP(this));
         makeTransitionAnimation();
         super.onStop();
     }
@@ -44,9 +44,11 @@ public class Splash extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(splashViewModel.checkOTPStatus(getApplicationContext(), requestCode, data)){
-            mHandler.postDelayed(() -> splashViewModel.launchSignUp(getApplicationContext(),this),SPLASH_DELAY);
-            makeTransitionAnimation();
+        if(resultCode == RESULT_OK){
+            if(splashViewModel.checkOTPStatus(requestCode, data)){
+                mHandler.postDelayed(() -> splashViewModel.launchSignUp(this),SPLASH_DELAY);
+                makeTransitionAnimation();
+            }
         }
     }
 }
