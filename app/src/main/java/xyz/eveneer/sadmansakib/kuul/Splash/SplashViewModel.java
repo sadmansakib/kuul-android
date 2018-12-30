@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.Account;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitCallback;
@@ -18,6 +19,7 @@ import com.facebook.accountkit.ui.LoginType;
 
 import java.util.Objects;
 
+import xyz.eveneer.sadmansakib.kuul.Home.Home;
 import xyz.eveneer.sadmansakib.kuul.SignUp.SignUp;
 
 import static xyz.eveneer.sadmansakib.kuul.Constants.otp.APP_REQUEST_CODE;
@@ -63,6 +65,11 @@ class SplashViewModel extends AndroidViewModel {
         return false;
     }
 
+    boolean checkUserAlreadyLoggedIn() {
+        AccessToken accessToken = AccountKit.getCurrentAccessToken();
+        return accessToken != null;
+    }
+
     private void getCurrentUserPhoneNumber() {
         AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
             @Override
@@ -78,5 +85,9 @@ class SplashViewModel extends AndroidViewModel {
 
     void launchSignUp(Activity activity) {
         activity.startActivity(new Intent(getApplication().getApplicationContext(),SignUp.class));
+    }
+
+    void launchHome(Activity activity){
+        activity.startActivity(new Intent(getApplication().getApplicationContext(),Home.class));
     }
 }
