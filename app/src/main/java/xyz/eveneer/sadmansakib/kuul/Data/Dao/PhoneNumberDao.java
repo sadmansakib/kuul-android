@@ -18,9 +18,11 @@
 
 package xyz.eveneer.sadmansakib.kuul.Data.Dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
 
 import xyz.eveneer.sadmansakib.kuul.Data.Entity.PhoneNumber;
 
@@ -29,4 +31,7 @@ public interface PhoneNumberDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(PhoneNumber phoneNumber);
+
+    @Query("SELECT * FROM user_phone_number")
+    LiveData<String> getUserNumber();
 }

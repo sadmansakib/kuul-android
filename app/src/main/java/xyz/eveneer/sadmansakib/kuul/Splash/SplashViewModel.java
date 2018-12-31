@@ -21,10 +21,12 @@ package xyz.eveneer.sadmansakib.kuul.Splash;
 import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
+import android.arch.lifecycle.LiveData;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
+
 import com.facebook.accountkit.Account;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitCallback;
@@ -52,12 +54,13 @@ class SplashViewModel extends AndroidViewModel {
     private PhoneNumber phoneNumber;
     private String TAG = getClass().getSimpleName();
     private PhoneNumberDao phoneDao;
-    private PhoneNumberRoomDatabase phoneDB;
+    private LiveData<String> number;
 
     public SplashViewModel(@NonNull Application application) {
         super(application);
-        phoneDB=PhoneNumberRoomDatabase.getDatabase(application);
-        phoneDao=phoneDB.phoneNumberDao();
+        PhoneNumberRoomDatabase phoneDB = PhoneNumberRoomDatabase.getDatabase(application);
+        phoneDao= phoneDB.phoneNumberDao();
+        number=phoneDao.getUserNumber();
     }
 
     void launchOTP(Activity activity){
@@ -88,21 +91,20 @@ class SplashViewModel extends AndroidViewModel {
                 return false;
             }
             else if (loginResult.getAccessToken() != null){
-                getCurrentUserPhoneNumber();
+                getCurrentUserPhoneNumberIntoDB();
                 return true;
             }
         }
         return false;
     }
 
-    private void getCurrentUserPhoneNumber() {
+    private void getCurrentUserPhoneNumberIntoDB() {
         AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
             @Override
             public void onSuccess(Account account) {
                 phoneNumber = new PhoneNumber(String.valueOf(account.getPhoneNumber()));
                 insert(phoneNumber);
-                mUserAuthStateChecker=new UserAuthStateChecker(phoneNumber.getPhonenumber());
-                Log.i(TAG, "onSuccess: "+phoneNumber.getPhonenumber());
+                Log.i(TAG, "onSuccess: "+number.getValue());
             }
 
             @Override
@@ -110,6 +112,14 @@ class SplashViewModel extends AndroidViewModel {
                 Log.e(TAG, "onError: "+accountKitError.getDetailErrorCode());
             }
         });
+    }
+
+    LiveData<String> getUserNumber() {
+        return number;
+    }
+
+    void authListener(String s){
+        mUserAuthStateChecker = new UserAuthStateChecker(s);
     }
 
     boolean userAuthChecker(){

@@ -37,7 +37,7 @@ public abstract class PhoneNumberRoomDatabase extends RoomDatabase {
             synchronized (PhoneNumberRoomDatabase.class){
                 if(phonenumberInstance == null){
                     phonenumberInstance = Room.databaseBuilder(context.getApplicationContext(),
-                            PhoneNumberRoomDatabase.class, "phonenumber_database")
+                            PhoneNumberRoomDatabase.class, "phone_number_database")
                             .build();
                 }
             }

@@ -20,17 +20,19 @@ package xyz.eveneer.sadmansakib.kuul.Splash;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.util.Log;
 
 import xyz.eveneer.sadmansakib.kuul.R;
-import xyz.eveneer.sadmansakib.kuul.Splash.AuthState.UserAuthStateChecker;
 
 import static xyz.eveneer.sadmansakib.kuul.Constants.splash.SPLASH_DELAY;
 
 public class Splash extends AppCompatActivity {
+
+    public static String TAG= Splash.class.getSimpleName();
 
     private Handler mHandler = new Handler();
     private SplashViewModel splashViewModel;
@@ -40,11 +42,13 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         splashViewModel = ViewModelProviders.of(this).get(SplashViewModel.class);
-        if(splashViewModel.userAuthChecker()){
-            mHandler.postDelayed(() -> splashViewModel.launchHome(this),SPLASH_DELAY);
+        splashViewModel.getUserNumber().observe(this, s ->
+                splashViewModel.authListener(s));
+        if (splashViewModel.userAuthChecker()) {
+            mHandler.postDelayed(() -> splashViewModel.launchHome(this), SPLASH_DELAY);
             makeTransitionAnimation();
-        }else{
-            mHandler.postDelayed(() -> splashViewModel.launchOTP(this),SPLASH_DELAY);
+        } else {
+            mHandler.postDelayed(() -> splashViewModel.launchOTP(this), SPLASH_DELAY);
             makeTransitionAnimation();
         }
     }
