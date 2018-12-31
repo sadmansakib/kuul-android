@@ -26,6 +26,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import xyz.eveneer.sadmansakib.kuul.R;
+import xyz.eveneer.sadmansakib.kuul.Splash.AuthState.UserAuthStateChecker;
 
 import static xyz.eveneer.sadmansakib.kuul.Constants.splash.SPLASH_DELAY;
 
@@ -39,13 +40,13 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         splashViewModel = ViewModelProviders.of(this).get(SplashViewModel.class);
-//        if(splashViewModel.checkUserAlreadyLoggedIn()){
-//            mHandler.postDelayed(() -> splashViewModel.launchHome(this),SPLASH_DELAY);
-//            makeTransitionAnimation();
-//        }else{
+        if(splashViewModel.userAuthChecker()){
+            mHandler.postDelayed(() -> splashViewModel.launchHome(this),SPLASH_DELAY);
+            makeTransitionAnimation();
+        }else{
             mHandler.postDelayed(() -> splashViewModel.launchOTP(this),SPLASH_DELAY);
             makeTransitionAnimation();
-//        }
+        }
     }
 
     @Override

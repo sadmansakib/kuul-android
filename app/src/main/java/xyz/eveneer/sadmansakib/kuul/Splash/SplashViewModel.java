@@ -25,8 +25,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.Account;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitCallback;
@@ -43,11 +41,15 @@ import xyz.eveneer.sadmansakib.kuul.Data.DataBase.PhoneNumberRoomDatabase;
 import xyz.eveneer.sadmansakib.kuul.Data.Entity.PhoneNumber;
 import xyz.eveneer.sadmansakib.kuul.Home.Home;
 import xyz.eveneer.sadmansakib.kuul.SignUp.SignUp;
+import xyz.eveneer.sadmansakib.kuul.Splash.AuthState.UserAuthStateChecker;
 
 import static xyz.eveneer.sadmansakib.kuul.Constants.otp.APP_REQUEST_CODE;
 
 class SplashViewModel extends AndroidViewModel {
 
+    private UserAuthStateChecker mUserAuthStateChecker;
+
+    private PhoneNumber phoneNumber;
     private String TAG = getClass().getSimpleName();
     private PhoneNumberDao phoneDao;
     private PhoneNumberRoomDatabase phoneDB;
@@ -93,25 +95,29 @@ class SplashViewModel extends AndroidViewModel {
         return false;
     }
 
-    boolean checkUserAlreadyLoggedIn() {
-        AccessToken accessToken = AccountKit.getCurrentAccessToken();
-        return accessToken != null;
-    }
-
     private void getCurrentUserPhoneNumber() {
         AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
             @Override
             public void onSuccess(Account account) {
-                PhoneNumber phoneNumber = new PhoneNumber(String.valueOf(account.getPhoneNumber()));
+                phoneNumber = new PhoneNumber(String.valueOf(account.getPhoneNumber()));
                 insert(phoneNumber);
+                mUserAuthStateChecker=new UserAuthStateChecker(phoneNumber.getPhonenumber());
                 Log.i(TAG, "onSuccess: "+phoneNumber.getPhonenumber());
             }
 
             @Override
             public void onError(AccountKitError accountKitError) {
-
+                Log.e(TAG, "onError: "+accountKitError.getDetailErrorCode());
             }
         });
+    }
+
+    boolean userAuthChecker(){
+        if(mUserAuthStateChecker.checkUserAccounkitToken()){
+            return mUserAuthStateChecker.checkUserOnServerDB();
+        }else{
+            return false;
+        }
     }
 
     void launchSignUp(Activity activity) {
