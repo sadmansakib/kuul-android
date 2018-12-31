@@ -23,6 +23,7 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.facebook.accountkit.AccessToken;
@@ -37,6 +38,9 @@ import com.facebook.accountkit.ui.LoginType;
 
 import java.util.Objects;
 
+import xyz.eveneer.sadmansakib.kuul.Data.Dao.PhoneNumberDao;
+import xyz.eveneer.sadmansakib.kuul.Data.DataBase.PhoneNumberRoomDatabase;
+import xyz.eveneer.sadmansakib.kuul.Data.Entity.PhoneNumber;
 import xyz.eveneer.sadmansakib.kuul.Home.Home;
 import xyz.eveneer.sadmansakib.kuul.SignUp.SignUp;
 
@@ -44,8 +48,14 @@ import static xyz.eveneer.sadmansakib.kuul.Constants.otp.APP_REQUEST_CODE;
 
 class SplashViewModel extends AndroidViewModel {
 
+    private String TAG = getClass().getSimpleName();
+    private PhoneNumberDao phoneDao;
+    private PhoneNumberRoomDatabase phoneDB;
+
     public SplashViewModel(@NonNull Application application) {
         super(application);
+        phoneDB=PhoneNumberRoomDatabase.getDatabase(application);
+        phoneDao=phoneDB.phoneNumberDao();
     }
 
     void launchOTP(Activity activity){
@@ -92,6 +102,9 @@ class SplashViewModel extends AndroidViewModel {
         AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
             @Override
             public void onSuccess(Account account) {
+                PhoneNumber phoneNumber = new PhoneNumber(String.valueOf(account.getPhoneNumber()));
+                insert(phoneNumber);
+                Log.i(TAG, "onSuccess: "+phoneNumber.getPhonenumber());
             }
 
             @Override
@@ -107,5 +120,9 @@ class SplashViewModel extends AndroidViewModel {
 
     void launchHome(Activity activity){
         activity.startActivity(new Intent(getApplication().getApplicationContext(),Home.class));
+    }
+
+    private void insert(PhoneNumber phoneNumber){
+        new InsertAsyncTask(phoneDao).execute(phoneNumber);
     }
 }

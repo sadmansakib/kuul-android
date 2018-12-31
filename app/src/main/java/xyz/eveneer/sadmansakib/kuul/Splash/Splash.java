@@ -39,13 +39,13 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         splashViewModel = ViewModelProviders.of(this).get(SplashViewModel.class);
-        if(splashViewModel.checkUserAlreadyLoggedIn()){
-            mHandler.postDelayed(() -> splashViewModel.launchHome(this),SPLASH_DELAY);
-            makeTransitionAnimation();
-        }else{
+//        if(splashViewModel.checkUserAlreadyLoggedIn()){
+//            mHandler.postDelayed(() -> splashViewModel.launchHome(this),SPLASH_DELAY);
+//            makeTransitionAnimation();
+//        }else{
             mHandler.postDelayed(() -> splashViewModel.launchOTP(this),SPLASH_DELAY);
             makeTransitionAnimation();
-        }
+//        }
     }
 
     @Override
