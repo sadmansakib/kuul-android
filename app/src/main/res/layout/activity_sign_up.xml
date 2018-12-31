@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_color"
     tools:context=".SignUp.SignUp">
 
 
@@ -27,10 +28,12 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:text="@string/sign_up_title"
         android:textColor="#FFFFFF"
         android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/textview4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
@@ -38,27 +41,30 @@
     <TextView
         android:id="@+id/textview4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="102dp"
+        android:layout_marginBottom="40dp"
         android:text="@string/sign_up_page_txt"
         android:textAlignment="center"
         android:textColor="#ffffff"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <android.support.design.widget.TextInputLayout
-        app:layout_goneMarginTop="15dp"
         android:id="@+id/textInputLayout"
         android:layout_width="373dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:textColorHint="#FFFFFF"
-        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview4">
+        app:layout_constraintTop_toBottomOf="@+id/textview4"
+        app:layout_goneMarginTop="15dp">
 
         <EditText
             android:id="@+id/gender"
@@ -76,8 +82,8 @@
         android:id="@+id/textInputLayout2"
         android:layout_width="373dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +106,7 @@
         android:id="@+id/textInputLayout3"
         android:layout_width="373dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="155dp"
         android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/login_button"
