@@ -24,15 +24,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import xyz.eveneer.sadmansakib.kuul.R;
 
 import static xyz.eveneer.sadmansakib.kuul.Constants.splash.SPLASH_DELAY;
 
 public class Splash extends AppCompatActivity {
-
-    public static String TAG= Splash.class.getSimpleName();
 
     private Handler mHandler = new Handler();
     private SplashViewModel splashViewModel;
@@ -51,11 +48,6 @@ public class Splash extends AppCompatActivity {
             mHandler.postDelayed(() -> splashViewModel.launchOTP(this), SPLASH_DELAY);
             makeTransitionAnimation();
         }
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
     }
 
     @Override

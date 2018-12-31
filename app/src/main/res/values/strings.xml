@@ -14,4 +14,17 @@
     <string name="account_kit_client_token">78cd8a651dc7c41905c4659d28caeee1</string>
     <string name="ak_login_protocol_scheme">ak78cd8a651dc7c41905c4659d28caeee1</string>
 
+
+    <!-- sign up -->
+    <string name="sign_up_title">Sign Up</string>
+    <string name="sign_up_page_txt">Please give real information so that we can identify\n
+        You in case anything happens and you are in danger.\n
+        \n
+        \n
+        Please note that Phone Number cannot be changed.</string>
+    <string name="gender">Gender</string>
+    <string name="user_name">Name</string>
+    <string name="home_address">Home Address</string>
+    <string name="sign_in">Sign In</string>
+
 </resources>
