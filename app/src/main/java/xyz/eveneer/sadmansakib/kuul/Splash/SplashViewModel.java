@@ -103,7 +103,11 @@ class SplashViewModel extends AndroidViewModel {
             @Override
             public void onSuccess(Account account) {
                 phoneNumber = new PhoneNumber(String.valueOf(account.getPhoneNumber()));
-                insert(phoneNumber);
+                if(getUserNumber().getValue()!=null){
+                    update(phoneNumber);
+                }else{
+                    insert(phoneNumber);
+                }
                 Log.i(TAG, "onSuccess: "+number.getValue());
             }
 
@@ -140,5 +144,9 @@ class SplashViewModel extends AndroidViewModel {
 
     private void insert(PhoneNumber phoneNumber){
         new InsertAsyncTask(phoneDao).execute(phoneNumber);
+    }
+
+    private void update(PhoneNumber phoneNumber){
+        new UpdateAsyncTask(phoneDao).execute(phoneNumber);
     }
 }

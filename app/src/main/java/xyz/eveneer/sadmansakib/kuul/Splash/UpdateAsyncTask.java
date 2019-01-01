@@ -1,6 +1,6 @@
 /*
  *
- *    Copyright 2018  Sadman Sakib
+ *    Copyright 2019  Sadman Sakib
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -16,26 +16,23 @@
  *
  */
 
-package xyz.eveneer.sadmansakib.kuul.Data.Dao;
+package xyz.eveneer.sadmansakib.kuul.Splash;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
+import android.os.AsyncTask;
 
+import xyz.eveneer.sadmansakib.kuul.Data.Dao.PhoneNumberDao;
 import xyz.eveneer.sadmansakib.kuul.Data.Entity.PhoneNumber;
 
-@Dao
-public interface PhoneNumberDao {
+class UpdateAsyncTask extends AsyncTask<PhoneNumber,Void,Void> {
+    private PhoneNumberDao mPhoneDao;
 
-    @Insert
-    void insert(PhoneNumber phoneNumber);
+    UpdateAsyncTask(PhoneNumberDao phoneDao) {
+        this.mPhoneDao=phoneDao;
+    }
 
-    @Update(onConflict = OnConflictStrategy.REPLACE)
-    void update(PhoneNumber phoneNumber);
-
-    @Query("SELECT * FROM user_phone_number")
-    LiveData<String> getUserNumber();
+    @Override
+    protected Void doInBackground(PhoneNumber... phoneNumbers) {
+        mPhoneDao.update(phoneNumbers[0]);
+        return null;
+    }
 }
