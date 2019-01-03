@@ -46,7 +46,7 @@ public interface KuulServerClient {
     @FormUrlEncoded
     @POST("SOS")
     Call<sos> sendSOS(
-            @Field(value = "phone") String phone_number,
-            @Field(value = "location") String location
+            @Field(value = "phone") String phone_number
+//            @Field(value = "location") String location
     );
 }
