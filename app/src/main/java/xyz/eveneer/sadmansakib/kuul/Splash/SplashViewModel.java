@@ -50,8 +50,6 @@ import static xyz.eveneer.sadmansakib.kuul.Constants.otp.APP_REQUEST_CODE;
 
 class SplashViewModel extends AndroidViewModel {
 
-    private UserAuthStateChecker mUserAuthStateChecker;
-
     private PhoneNumber phoneNumber;
     private String TAG = getClass().getSimpleName();
     private PhoneNumberDao phoneDao;
@@ -123,17 +121,22 @@ class SplashViewModel extends AndroidViewModel {
         return number;
     }
 
-    void authListener(String s){
-        mUserAuthStateChecker = new UserAuthStateChecker(s);
-    }
-
-    boolean userAuthChecker(){
+    boolean authListener(String s){
+        UserAuthStateChecker mUserAuthStateChecker = new UserAuthStateChecker(s);
         if(mUserAuthStateChecker.checkUserAccounkitToken()){
             return mUserAuthStateChecker.checkUserOnServerDB();
         }else{
             return false;
         }
     }
+//
+//    boolean userAuthChecker(){
+//        if(mUserAuthStateChecker.checkUserAccounkitToken()){
+//            return mUserAuthStateChecker.checkUserOnServerDB();
+//        }else{
+//            return false;
+//        }
+//    }
 
     void launchSignUp(Activity activity) {
         activity.startActivity(new Intent(getApplication().getApplicationContext(),SignUp.class));

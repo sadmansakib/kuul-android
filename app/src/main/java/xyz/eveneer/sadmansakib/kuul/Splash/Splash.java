@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import xyz.eveneer.sadmansakib.kuul.R;
 
@@ -31,6 +32,7 @@ import static xyz.eveneer.sadmansakib.kuul.Constants.splash.SPLASH_DELAY;
 
 public class Splash extends AppCompatActivity {
 
+    private final String TAG = getClass().getSimpleName() ;
     private Handler mHandler = new Handler();
     private SplashViewModel splashViewModel;
 
@@ -39,13 +41,14 @@ public class Splash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         splashViewModel = ViewModelProviders.of(this).get(SplashViewModel.class);
-        splashViewModel.getUserNumber().observe(this, s ->
-                splashViewModel.authListener(s));
-//        if (splashViewModel.userAuthChecker()) {
-            mHandler.postDelayed(() -> splashViewModel.launchHome(this), SPLASH_DELAY);
-//        } else {
-//            mHandler.postDelayed(() -> splashViewModel.launchOTP(this), SPLASH_DELAY);
-//        }
+        splashViewModel.getUserNumber().observe(this, s -> {
+            Log.i(TAG, "onCreate: "+s);
+            if(splashViewModel.authListener(s)){
+                mHandler.postDelayed(() -> splashViewModel.launchHome(Splash.this),SPLASH_DELAY);
+            }else{
+                mHandler.postDelayed(() -> splashViewModel.launchOTP(Splash.this), SPLASH_DELAY);
+            }
+        });
     }
 
     @Override
