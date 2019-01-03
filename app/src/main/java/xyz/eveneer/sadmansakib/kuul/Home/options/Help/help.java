@@ -27,6 +27,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Objects;
+
 import xyz.eveneer.sadmansakib.kuul.R;
 
 public class help extends Fragment {
@@ -48,6 +50,12 @@ public class help extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HelpViewModel.class);
         // TODO: Use the ViewModel
+        Objects.requireNonNull(getActivity())
+                .findViewById(R.id.help_btn)
+                .setOnClickListener(v -> mViewModel.sendSOS(getActivity()));
+
+        Objects.requireNonNull(getActivity()).findViewById(R.id.previous_report_btn)
+                .setOnClickListener(v -> mViewModel.reportPreviousIncident(getActivity()));
     }
 
 }

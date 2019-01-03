@@ -32,9 +32,9 @@
         <activity android:name="com.facebook.accountkit.ui.AccountKitActivity" />
         <activity
             android:name=".Splash.Splash"
+            android:configChanges="orientation|keyboardHidden"
             android:theme="@style/splashTheme"
-            tools:ignore="InnerclassSeparator"
-            android:configChanges="orientation|keyboardHidden">
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,12 +44,16 @@
         <activity
             android:name=".Tutorial.Tutorial"
             tools:ignore="InnerclassSeparator" />
-        <activity android:name=".SignUp.SignUp"
+        <activity
+            android:name=".SignUp.SignUp"
             android:configChanges="orientation|keyboardHidden" />
         <activity
             android:name=".Home.Home"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_home"
-            android:theme="@style/AppTheme"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Report_previous_incedent.Report_past"
             android:configChanges="orientation|keyboardHidden" />
     </application>
 

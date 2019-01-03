@@ -56,4 +56,19 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="sos_sent">SOS Sent!</string>
+    <string name="call_or_text">Would you like to receive a Call or Text?</string>
+    <string name="call_me">Call me</string>
+    <string name="text_me">Text me</string>
+
+    <string name="report_incident_title">If you have suffered from domestic abuse in the\n
+        past, you can report those incidents. Please tell us\n
+        who the victim was, when this incident happened,\n
+        and a short description of what happened. We will\n
+        inform the right authorities about it.</string>
+    <string name="date_of_event">Date of Event</string>
+    <string name="victim_name">Victim Name</string>
+    <string name="description_of_the_event">Description of the event</string>
+    <string name="report_this_event">report this event</string>
+
 </resources>

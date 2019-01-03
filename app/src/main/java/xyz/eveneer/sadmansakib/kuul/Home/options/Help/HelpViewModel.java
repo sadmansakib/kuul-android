@@ -18,8 +18,31 @@
 
 package xyz.eveneer.sadmansakib.kuul.Home.options.Help;
 
-import android.arch.lifecycle.ViewModel;
+import android.app.Activity;
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 
-public class HelpViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
+import xyz.eveneer.sadmansakib.kuul.Custom.CustomPrompt;
+import xyz.eveneer.sadmansakib.kuul.R;
+import xyz.eveneer.sadmansakib.kuul.Report_previous_incedent.Report_past;
+
+public class HelpViewModel extends AndroidViewModel {
+
+    public HelpViewModel(@NonNull Application application) {
+        super(application);
+    }
+
+    void sendSOS(Activity activity) {
+        CustomPrompt customPrompt= new CustomPrompt(activity);
+        customPrompt.show();
+    }
+
+    void reportPreviousIncident(FragmentActivity activity) {
+        activity.startActivity(new Intent(getApplication().
+                getApplicationContext(),Report_past.class));
+        activity.overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
 }
