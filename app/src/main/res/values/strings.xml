@@ -28,10 +28,32 @@
     <string name="home">Home</string>
     <string name="settings">Settings</string>
     <string name="about">About</string>
-    <string name="nav_header_desc">kuul_logo</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ask_for_help">Ask for help</string>
+    <string name="s_o_s">Help</string>
+    <string name="alternate_help_text">
+        Alternatively, if you have suffered from \n
+    domestic abuse in the past,you can report \n
+        those incidents will be reported too directly from this app
+    </string>
+    <string name="report_an_incident">report an incident</string>
 
-    <!--drawer-->
-
+    <string name="about_us">Eveneer is an IT Firm focused on developing real life \n
+        solutions to real life problems. We are a small team of \n
+        creatives, who got together and thought that if you \n
+        could change the world by making things which \n
+        could help the society.\n\n
+        This product was made for Banglalink\'s SDG\n
+        Hackathon but it doesn\'t mean we will not try\n
+        to implement it in real life.\n\n
+        Thank you for viewing this prototype</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

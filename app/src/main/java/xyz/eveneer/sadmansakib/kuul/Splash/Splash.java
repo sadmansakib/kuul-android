@@ -41,24 +41,17 @@ public class Splash extends AppCompatActivity {
         splashViewModel = ViewModelProviders.of(this).get(SplashViewModel.class);
         splashViewModel.getUserNumber().observe(this, s ->
                 splashViewModel.authListener(s));
-        if (splashViewModel.userAuthChecker()) {
+//        if (splashViewModel.userAuthChecker()) {
             mHandler.postDelayed(() -> splashViewModel.launchHome(this), SPLASH_DELAY);
-            makeTransitionAnimation();
-        } else {
-            mHandler.postDelayed(() -> splashViewModel.launchOTP(this), SPLASH_DELAY);
-            makeTransitionAnimation();
-        }
+//        } else {
+//            mHandler.postDelayed(() -> splashViewModel.launchOTP(this), SPLASH_DELAY);
+//        }
     }
 
     @Override
     protected void onStop() {
         mHandler.removeCallbacks(()-> splashViewModel.launchOTP(this));
-        makeTransitionAnimation();
         super.onStop();
-    }
-
-    private void makeTransitionAnimation(){
-        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 
     @Override
@@ -67,7 +60,6 @@ public class Splash extends AppCompatActivity {
         if(resultCode == RESULT_OK){
             if(splashViewModel.checkOTPStatus(requestCode, data)){
                 mHandler.postDelayed(() -> splashViewModel.launchSignUp(this),SPLASH_DELAY);
-                makeTransitionAnimation();
                 finish();
             }
         }

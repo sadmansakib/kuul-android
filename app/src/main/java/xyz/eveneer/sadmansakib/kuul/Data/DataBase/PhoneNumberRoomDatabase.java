@@ -26,7 +26,7 @@ import android.content.Context;
 import xyz.eveneer.sadmansakib.kuul.Data.Dao.PhoneNumberDao;
 import xyz.eveneer.sadmansakib.kuul.Data.Entity.PhoneNumber;
 
-@Database(entities = PhoneNumber.class, version = 1)
+@Database(entities = PhoneNumber.class, version = 1, exportSchema = false)
 public abstract class PhoneNumberRoomDatabase extends RoomDatabase {
 
     public abstract PhoneNumberDao phoneNumberDao();

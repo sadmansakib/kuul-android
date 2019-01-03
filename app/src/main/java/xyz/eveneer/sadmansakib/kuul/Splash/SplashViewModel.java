@@ -22,7 +22,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -43,6 +42,7 @@ import xyz.eveneer.sadmansakib.kuul.Data.Dao.PhoneNumberDao;
 import xyz.eveneer.sadmansakib.kuul.Data.DataBase.PhoneNumberRoomDatabase;
 import xyz.eveneer.sadmansakib.kuul.Data.Entity.PhoneNumber;
 import xyz.eveneer.sadmansakib.kuul.Home.Home;
+import xyz.eveneer.sadmansakib.kuul.R;
 import xyz.eveneer.sadmansakib.kuul.SignUp.SignUp;
 import xyz.eveneer.sadmansakib.kuul.Splash.AuthState.UserAuthStateChecker;
 
@@ -137,10 +137,14 @@ class SplashViewModel extends AndroidViewModel {
 
     void launchSignUp(Activity activity) {
         activity.startActivity(new Intent(getApplication().getApplicationContext(),SignUp.class));
+        makeTransitionAnimation(activity);
+        activity.finish();
     }
 
     void launchHome(Activity activity){
         activity.startActivity(new Intent(getApplication().getApplicationContext(),Home.class));
+        makeTransitionAnimation(activity);
+        activity.finish();
     }
 
     private void insert(PhoneNumber phoneNumber){
@@ -149,5 +153,9 @@ class SplashViewModel extends AndroidViewModel {
 
     private void update(PhoneNumber phoneNumber){
         new UpdateAsyncTask(phoneDao).execute(phoneNumber);
+    }
+
+    private void makeTransitionAnimation(Activity activity){
+        activity.overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
 }

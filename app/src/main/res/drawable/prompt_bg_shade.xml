@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <bitmap
+            android:src="@drawable/alert_bg"/>
+    </item>
+
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:endColor="#99000000"
+                android:gradientRadius="320dp"
+                android:startColor="#99000000"
+                android:type="radial" />
+        </shape>
+    </item>
+</layer-list>
