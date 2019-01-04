@@ -16,38 +16,39 @@
  *
  */
 
-package xyz.eveneer.sadmansakib.kuul.Home.options.About;
+package xyz.eveneer.sadmansakib.kuul.Home.options.Settings;
 
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.preference.PreferenceFragmentCompat;
 import xyz.eveneer.sadmansakib.kuul.R;
 
-public class about extends Fragment {
+public class Settings extends PreferenceFragmentCompat {
 
+    private SettingsViewModel mViewModel;
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, @NonNull String rootKey) {
+        setPreferencesFromResource(R.xml.preference,rootKey);
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.about_fragment, container, false);
+        return inflater.inflate(R.layout.settings_fragment, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        TextView about_text = Objects.requireNonNull(getView()).findViewById(R.id.about);
-        AboutViewModel mViewModel = ViewModelProviders.of(this).get(AboutViewModel.class);
-        mViewModel.getAboutUsString().observeForever(s -> about_text.setText(mViewModel.getAboutUsString().getValue()));
-        about_text.setMovementMethod(new ScrollingMovementMethod());
+        mViewModel = ViewModelProviders.of(this).get(SettingsViewModel.class);
+        // TODO: Use the ViewModel
     }
+
 }

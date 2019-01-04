@@ -19,15 +19,16 @@
 package xyz.eveneer.sadmansakib.kuul.Home;
 
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.AndroidViewModel;
 import xyz.eveneer.sadmansakib.kuul.Home.options.About.about;
 import xyz.eveneer.sadmansakib.kuul.Home.options.Help.help;
+import xyz.eveneer.sadmansakib.kuul.Home.options.Settings.Settings;
 import xyz.eveneer.sadmansakib.kuul.R;
 
 public class HomeViewModel extends AndroidViewModel {
@@ -44,11 +45,11 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     void selectMenu(FragmentManager fragmentManager, MenuItem item) {
-        Fragment fragment = null;
+        Fragment fragment;
         switch (item.getItemId()){
             case R.id.nav_home: fragment = new help(); break;
             case R.id.nav_about: fragment = new about(); break;
-//            case R.id.nav_settings: fragment = new
+            case R.id.nav_settings: fragment = new Settings();break;
             default: fragment = new help();
         }
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

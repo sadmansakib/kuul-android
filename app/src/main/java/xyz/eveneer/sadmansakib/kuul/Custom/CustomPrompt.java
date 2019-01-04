@@ -21,15 +21,15 @@ package xyz.eveneer.sadmansakib.kuul.Custom;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatButton;
 import xyz.eveneer.sadmansakib.kuul.R;
 
-import static android.support.constraint.Constraints.TAG;
+import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
 
 public class CustomPrompt extends Dialog implements View.OnClickListener {
 

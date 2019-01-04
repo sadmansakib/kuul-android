@@ -24,7 +24,7 @@
             name="aboutModel"
             type="xyz.eveneer.sadmansakib.kuul.Home.options.About.AboutViewModel"/>
     </data>
-        <android.support.v7.widget.LinearLayoutCompat
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -40,5 +40,5 @@
                 android:text="@{aboutModel.about_us, default=eveneer}"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
-        </android.support.v7.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

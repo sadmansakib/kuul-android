@@ -18,11 +18,11 @@
 
 package xyz.eveneer.sadmansakib.kuul.Data.DataBase;
 
-import android.arch.persistence.room.Database;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import androidx.room.Database;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 import xyz.eveneer.sadmansakib.kuul.Data.Dao.PhoneNumberDao;
 import xyz.eveneer.sadmansakib.kuul.Data.Entity.PhoneNumber;
 

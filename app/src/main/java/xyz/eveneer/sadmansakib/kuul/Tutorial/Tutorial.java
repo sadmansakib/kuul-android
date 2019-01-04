@@ -18,13 +18,15 @@
 
 package xyz.eveneer.sadmansakib.kuul.Tutorial;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.hololo.tutorial.library.TutorialActivity;
 
+import androidx.lifecycle.ViewModelProviders;
 import xyz.eveneer.sadmansakib.kuul.Home.Home;
+
+import static com.facebook.accountkit.internal.AccountKitController.getApplicationContext;
 
 public class Tutorial extends TutorialActivity {
     @Override
@@ -43,7 +45,6 @@ public class Tutorial extends TutorialActivity {
     @Override
     public void finishTutorial() {
         super.finishTutorial();
-        startActivity(new Intent(getApplicationContext(),Home.class));
-        finish();
+        getApplicationContext().startActivity(new Intent(this,Home.class));
     }
 }

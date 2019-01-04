@@ -20,10 +20,7 @@ package xyz.eveneer.sadmansakib.kuul.Splash;
 
 import android.app.Activity;
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -38,6 +35,9 @@ import com.facebook.accountkit.ui.LoginType;
 
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import xyz.eveneer.sadmansakib.kuul.Data.Dao.PhoneNumberDao;
 import xyz.eveneer.sadmansakib.kuul.Data.DataBase.PhoneNumberRoomDatabase;
 import xyz.eveneer.sadmansakib.kuul.Data.Entity.PhoneNumber;
@@ -129,14 +129,6 @@ class SplashViewModel extends AndroidViewModel {
             return false;
         }
     }
-//
-//    boolean userAuthChecker(){
-//        if(mUserAuthStateChecker.checkUserAccounkitToken()){
-//            return mUserAuthStateChecker.checkUserOnServerDB();
-//        }else{
-//            return false;
-//        }
-//    }
 
     void launchSignUp(Activity activity) {
         activity.startActivity(new Intent(getApplication().getApplicationContext(),SignUp.class));

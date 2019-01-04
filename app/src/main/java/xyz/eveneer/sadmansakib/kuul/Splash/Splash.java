@@ -18,14 +18,14 @@
 
 package xyz.eveneer.sadmansakib.kuul.Splash;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import xyz.eveneer.sadmansakib.kuul.R;
 
 import static xyz.eveneer.sadmansakib.kuul.Constants.splash.SPLASH_DELAY;
@@ -43,11 +43,11 @@ public class Splash extends AppCompatActivity {
         splashViewModel = ViewModelProviders.of(this).get(SplashViewModel.class);
         splashViewModel.getUserNumber().observe(this, s -> {
             Log.i(TAG, "onCreate: "+s);
-            if(splashViewModel.authListener(s)){
+//            if(splashViewModel.authListener(s)){
                 mHandler.postDelayed(() -> splashViewModel.launchHome(Splash.this),SPLASH_DELAY);
-            }else{
-                mHandler.postDelayed(() -> splashViewModel.launchOTP(Splash.this), SPLASH_DELAY);
-            }
+//            }else{
+//                mHandler.postDelayed(() -> splashViewModel.launchOTP(Splash.this), SPLASH_DELAY);
+//            }
         });
     }
 

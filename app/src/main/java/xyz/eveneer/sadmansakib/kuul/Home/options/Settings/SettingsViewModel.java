@@ -16,14 +16,10 @@
  *
  */
 
-package xyz.eveneer.sadmansakib.kuul.Report_previous_incedent;
+package xyz.eveneer.sadmansakib.kuul.Home.options.Settings;
 
-import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 
-public class ReportPastViewModel extends AndroidViewModel {
-    public ReportPastViewModel(@NonNull Application application) {
-        super(application);
-    }
+public class SettingsViewModel extends ViewModel {
+    // TODO: Implement the ViewModel
 }

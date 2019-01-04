@@ -20,15 +20,15 @@ package xyz.eveneer.sadmansakib.kuul.Home.options.Help;
 
 import android.app.Activity;
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,9 +38,9 @@ import xyz.eveneer.sadmansakib.kuul.Data.DataBase.PhoneNumberRoomDatabase;
 import xyz.eveneer.sadmansakib.kuul.Kuul;
 import xyz.eveneer.sadmansakib.kuul.Models.sos;
 import xyz.eveneer.sadmansakib.kuul.R;
-import xyz.eveneer.sadmansakib.kuul.Report_previous_incedent.Report_past;
+import xyz.eveneer.sadmansakib.kuul.Report_previous_incident.Report_past;
 
-import static android.support.constraint.Constraints.TAG;
+import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
 
 public class HelpViewModel extends AndroidViewModel {
     private LiveData<String> number;

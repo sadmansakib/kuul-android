@@ -18,7 +18,6 @@
 
 package xyz.eveneer.sadmansakib.kuul.Splash.AuthState;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.facebook.accountkit.AccessToken;
@@ -26,6 +25,7 @@ import com.facebook.accountkit.AccountKit;
 
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

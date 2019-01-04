@@ -1,6 +1,6 @@
 /*
  *
- *    Copyright 2018  Sadman Sakib
+ *    Copyright 2019  Sadman Sakib
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -16,24 +16,15 @@
  *
  */
 
-package xyz.eveneer.sadmansakib.kuul.Data.Entity;
+package xyz.eveneer.sadmansakib.kuul.Report_previous_incident;
+
+import android.app.Application;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import androidx.lifecycle.AndroidViewModel;
 
-@Entity(tableName = "user_phone_number")
-public class PhoneNumber {
-    @PrimaryKey
-    @NonNull
-    private String phonenumber;
-
-    public PhoneNumber(@NonNull String phonenumber) {
-        this.phonenumber = phonenumber;
-    }
-
-    @NonNull
-    public String getPhonenumber() {
-        return this.phonenumber;
+public class ReportPastViewModel extends AndroidViewModel {
+    public ReportPastViewModel(@NonNull Application application) {
+        super(application);
     }
 }

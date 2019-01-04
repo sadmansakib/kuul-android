@@ -20,23 +20,23 @@ package xyz.eveneer.sadmansakib.kuul.SignUp;
 
 import android.app.Activity;
 import android.app.Application;
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.LiveData;
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.eveneer.sadmansakib.kuul.Data.Dao.PhoneNumberDao;
 import xyz.eveneer.sadmansakib.kuul.Data.DataBase.PhoneNumberRoomDatabase;
-import xyz.eveneer.sadmansakib.kuul.Home.Home;
 import xyz.eveneer.sadmansakib.kuul.Kuul;
 import xyz.eveneer.sadmansakib.kuul.Models.Register;
 import xyz.eveneer.sadmansakib.kuul.R;
+import xyz.eveneer.sadmansakib.kuul.Tutorial.Tutorial;
 
 
 public class SignUpViewModel extends AndroidViewModel {
@@ -62,7 +62,7 @@ public class SignUpViewModel extends AndroidViewModel {
             @Override
             public void onResponse(@NonNull Call<Register> call, @NonNull Response<Register> response) {
                 if(Objects.requireNonNull(response.body()).getStatus().contains("success")){
-                    reDirectToHome();
+                    reDirectToTutorial();
                     activity.overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                 } else{
                     Log.e(TAG, "onResponse: "+response.body());
@@ -76,10 +76,10 @@ public class SignUpViewModel extends AndroidViewModel {
         });
     }
 
-    private void reDirectToHome() {
+    private void reDirectToTutorial() {
         getApplication().
                 getApplicationContext().
                 startActivity(new Intent(getApplication().
-                        getApplicationContext(),Home.class));
+                        getApplicationContext(),Tutorial.class));
     }
 }

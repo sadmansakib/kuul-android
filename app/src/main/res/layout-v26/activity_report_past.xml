@@ -17,7 +17,7 @@
   ~ **/
   -->
 
-<android.support.v7.widget.LinearLayoutCompat
+<androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,9 +26,9 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:background="@color/bg_color"
-    tools:context=".Report_previous_incedent.Report_past">
+    tools:context=".Report_previous_incident.Report_past">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,13 +40,13 @@
             layout="@layout/toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:isScrollContainer="true">
@@ -59,13 +59,13 @@
                 android:text="@string/report_incident_title"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="17.5sp"
+                android:textSize="17sp"
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout"
                 android:layout_width="373dp"
                 android:layout_height="wrap_content"
@@ -88,9 +88,9 @@
                     android:textColor="#FFFFFF"
                     tools:ignore="TextFields"
                     tools:targetApi="o" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout2"
                 android:layout_width="373dp"
                 android:layout_height="wrap_content"
@@ -111,9 +111,9 @@
                     android:inputType="text"
                     android:textColor="#FFFFFF"
                     tools:targetApi="o" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputLayout3"
                 android:layout_width="373dp"
                 android:layout_height="wrap_content"
@@ -134,9 +134,9 @@
                     android:inputType="text"
                     android:textColor="#FFFFFF"
                     tools:targetApi="o" />
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <android.support.v7.widget.AppCompatButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/report_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -152,7 +152,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
-        </android.support.constraint.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-</android.support.v7.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>
 

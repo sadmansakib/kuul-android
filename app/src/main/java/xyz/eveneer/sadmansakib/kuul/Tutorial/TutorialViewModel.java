@@ -18,17 +18,23 @@
 
 package xyz.eveneer.sadmansakib.kuul.Tutorial;
 
-import android.arch.lifecycle.ViewModel;
+import android.app.Application;
 import android.content.Context;
 
 import com.hololo.tutorial.library.PermissionStep;
 import com.hololo.tutorial.library.TutorialActivity;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import xyz.eveneer.sadmansakib.kuul.R;
 
 import static xyz.eveneer.sadmansakib.kuul.Constants.tutorial.PERMISSIONS;
 
-class TutorialViewModel extends ViewModel {
+class TutorialViewModel extends AndroidViewModel {
+
+    public TutorialViewModel(@NonNull Application application) {
+        super(application);
+    }
 
     void setupview(TutorialActivity activity, Context context){
         activity.addFragment(new PermissionStep.Builder().setTitle(context.getString(R.string.app_name))

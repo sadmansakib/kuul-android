@@ -16,15 +16,15 @@
  *
  */
 
-package xyz.eveneer.sadmansakib.kuul.Report_previous_incedent;
+package xyz.eveneer.sadmansakib.kuul.Report_previous_incident;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import java.util.Objects;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import xyz.eveneer.sadmansakib.kuul.R;
 
 public class Report_past extends AppCompatActivity {
