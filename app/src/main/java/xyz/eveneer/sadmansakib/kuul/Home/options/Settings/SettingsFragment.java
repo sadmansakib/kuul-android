@@ -18,24 +18,24 @@
 
 package xyz.eveneer.sadmansakib.kuul.Home.options.Settings;
 
+
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceFragmentCompat;
 import xyz.eveneer.sadmansakib.kuul.R;
 
-public class Settings extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class SettingsFragment extends PreferenceFragmentCompat {
 
-    private SettingsFragment settingsFragment;
+    public SettingsFragment(){
+
+    }
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        if(savedInstanceState == null){
-            settingsFragment=new SettingsFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.settings_container,settingsFragment,"Settings").commit();
-        }else{
-            settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag("Settings");
-        }
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+       setPreferencesFromResource(R.xml.preference_main,rootKey);
     }
 
 }

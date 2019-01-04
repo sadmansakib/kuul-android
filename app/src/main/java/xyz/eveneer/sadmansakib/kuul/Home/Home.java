@@ -35,13 +35,14 @@ import xyz.eveneer.sadmansakib.kuul.R;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    Toolbar toolbar;
     HomeViewModel homeViewModel;
     FragmentManager fragmentManager = getSupportFragmentManager();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = findViewById(R.id.my_toolbar);
+        toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
         homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -70,7 +71,7 @@ public class Home extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        homeViewModel.selectMenu(fragmentManager,item);
+        homeViewModel.selectMenu(fragmentManager,item,toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

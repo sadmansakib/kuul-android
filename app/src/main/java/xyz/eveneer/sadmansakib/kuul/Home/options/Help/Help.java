@@ -31,7 +31,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import xyz.eveneer.sadmansakib.kuul.R;
 
-public class help extends Fragment {
+public class Help extends Fragment {
 
     private HelpViewModel mViewModel;
 

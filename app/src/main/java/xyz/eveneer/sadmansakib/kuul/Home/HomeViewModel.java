@@ -19,15 +19,17 @@
 package xyz.eveneer.sadmansakib.kuul.Home;
 
 import android.app.Application;
+import android.content.Intent;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.AndroidViewModel;
-import xyz.eveneer.sadmansakib.kuul.Home.options.About.about;
-import xyz.eveneer.sadmansakib.kuul.Home.options.Help.help;
+import xyz.eveneer.sadmansakib.kuul.Home.options.About.About;
+import xyz.eveneer.sadmansakib.kuul.Home.options.Help.Help;
 import xyz.eveneer.sadmansakib.kuul.Home.options.Settings.Settings;
 import xyz.eveneer.sadmansakib.kuul.R;
 
@@ -38,22 +40,22 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
     void initView(FragmentManager fragmentManager) {
-        Fragment fragment = new help();
+        Fragment fragment = new Help();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.content_frame, fragment);
         fragmentTransaction.commit();
     }
 
-    void selectMenu(FragmentManager fragmentManager, MenuItem item) {
-        Fragment fragment;
+    void selectMenu(FragmentManager fragmentManager, MenuItem item, Toolbar toolbar) {
+        Fragment fragment = null;
         switch (item.getItemId()){
-            case R.id.nav_home: fragment = new help(); break;
-            case R.id.nav_about: fragment = new about(); break;
-            case R.id.nav_settings: fragment = new Settings();break;
-            default: fragment = new help();
+            case R.id.nav_home: fragment = new Help(); break;
+            case R.id.nav_about: fragment = new About(); toolbar.setTitle(About.class.getSimpleName()); break;
+            case R.id.nav_settings:
+                getApplication().getApplicationContext()
+                        .startActivity(new Intent(getApplication().getApplicationContext(),Settings.class));
+            default: fragment = new Help();
         }
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.content_frame, fragment);
-        fragmentTransaction.commit();
+        fragmentManager.beginTransaction().add(R.id.content_frame, fragment).commit();
     }
 }

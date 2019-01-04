@@ -16,10 +16,18 @@
  *
  */
 
-package xyz.eveneer.sadmansakib.kuul.Home.options.Settings;
+package xyz.eveneer.sadmansakib.kuul.Profile;
 
-import androidx.lifecycle.ViewModel;
+import android.os.Bundle;
 
-public class SettingsViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
+import androidx.appcompat.app.AppCompatActivity;
+import xyz.eveneer.sadmansakib.kuul.R;
+
+public class EditProfile extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_edit_profile);
+    }
 }

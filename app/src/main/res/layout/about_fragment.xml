@@ -29,7 +29,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@color/bg_color"
-            tools:context=".Home.options.About.about">
+            tools:context=".Home.options.About.About">
             <TextView
                 android:id="@+id/about"
                 android:textSize="15sp"

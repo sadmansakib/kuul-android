@@ -29,10 +29,10 @@
             android:name="com.facebook.accountkit.ClientToken"
             android:value="@string/account_kit_client_token" />
 
-        <activity android:name="com.facebook.accountkit.ui.AccountKitActivity"
+        <activity
+            android:name="com.facebook.accountkit.ui.AccountKitActivity"
             android:theme="@style/AppLoginTheme"
             tools:replace="android:theme" />
-
         <activity
             android:name=".Splash.Splash"
             android:configChanges="orientation|keyboardHidden"
@@ -61,6 +61,17 @@
             android:name=".Report_previous_incident.Report_past"
             android:configChanges="orientation|keyboardHidden"
             tools:ignore="InnerclassSeparator" />
+        <activity android:name=".Profile.EditProfile"
+            tools:ignore="InnerclassSeparator" />
+        <activity android:name=".Home.options.Settings.Settings"
+            android:label="Settings"
+            android:parentActivityName=".Home.Home"
+            android:theme="@style/SettingsTheme"
+            tools:ignore="InnerclassSeparator">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home.Home"/>
+        </activity>
     </application>
 
 </manifest>

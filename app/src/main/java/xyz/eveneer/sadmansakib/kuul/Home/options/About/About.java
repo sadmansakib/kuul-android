@@ -33,7 +33,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import xyz.eveneer.sadmansakib.kuul.R;
 
-public class about extends Fragment {
+public class About extends Fragment {
 
 
     @Override
