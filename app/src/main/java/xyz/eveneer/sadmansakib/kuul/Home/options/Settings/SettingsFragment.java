@@ -21,7 +21,10 @@ package xyz.eveneer.sadmansakib.kuul.Home.options.Settings;
 
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import xyz.eveneer.sadmansakib.kuul.R;
 
@@ -30,12 +33,24 @@ import xyz.eveneer.sadmansakib.kuul.R;
  */
 public class SettingsFragment extends PreferenceFragmentCompat {
 
+     private SettingsViewModel settingsViewModel;
+
     public SettingsFragment(){
 
     }
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
        setPreferencesFromResource(R.xml.preference_main,rootKey);
+        Preference edit_profile = findPreference("Edit_profile");
+        edit_profile.setOnPreferenceClickListener(preference -> {
+            settingsViewModel.goProfileEditor();
+            return false;
+        });
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        settingsViewModel  =ViewModelProviders.of(this).get(SettingsViewModel.class);
+    }
 }
