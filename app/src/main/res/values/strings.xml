@@ -146,5 +146,7 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="profile_edit_title">Here you can edit your profile. Please give real information so that we can identify you in case anything happens and you are in danger. Please note that Phone Number cannot be changed.</string>
+    <string name="save_profile_btn">Save Profile</string>
 
 </resources>

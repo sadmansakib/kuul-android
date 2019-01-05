@@ -62,7 +62,13 @@
             android:configChanges="orientation|keyboardHidden"
             tools:ignore="InnerclassSeparator" />
         <activity android:name=".Profile.EditProfile"
-            tools:ignore="InnerclassSeparator" />
+            android:label="Edit Profile"
+            tools:ignore="InnerclassSeparator"
+            android:parentActivityName=".Home.Home">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Home.Home"/>
+        </activity>
         <activity android:name=".Home.options.Settings.Settings"
             android:label="Settings"
             android:parentActivityName=".Home.Home"

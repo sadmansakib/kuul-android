@@ -7,7 +7,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@color/bg_color"
     tools:context=".SignUp.SignUp">
 
     <com.google.android.material.appbar.AppBarLayout
