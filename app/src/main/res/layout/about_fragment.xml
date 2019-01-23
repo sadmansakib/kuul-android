@@ -16,15 +16,8 @@
   ~ * limitations under the License.
   ~ **/
   -->
-
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="aboutModel"
-            type="xyz.eveneer.sadmansakib.kuul.Home.options.About.AboutViewModel"/>
-    </data>
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -41,4 +34,3 @@
                 android:textAlignment="center"
                 android:textColor="#FFFFFF" />
         </androidx.appcompat.widget.LinearLayoutCompat>
-</layout>

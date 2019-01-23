@@ -24,6 +24,7 @@ import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import xyz.eveneer.sadmansakib.kuul.Profile.EditProfile;
+import xyz.eveneer.sadmansakib.kuul.R;
 
 public class SettingsViewModel extends AndroidViewModel {
 
@@ -34,6 +35,7 @@ public class SettingsViewModel extends AndroidViewModel {
     void goProfileEditor() {
         getApplication().getApplicationContext().
                 startActivity(new Intent(getApplication().getApplicationContext(),
-                        EditProfile.class));
+                        EditProfile.class)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 }

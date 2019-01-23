@@ -53,7 +53,8 @@ public class HomeViewModel extends AndroidViewModel {
             case R.id.nav_about: fragment = new About(); toolbar.setTitle(About.class.getSimpleName()); break;
             case R.id.nav_settings:
                 getApplication().getApplicationContext()
-                        .startActivity(new Intent(getApplication().getApplicationContext(),Settings.class));
+                        .startActivity(new Intent(getApplication().getApplicationContext(),Settings.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             default: fragment = new Help();
         }
         fragmentManager.beginTransaction().add(R.id.content_frame, fragment).commit();
