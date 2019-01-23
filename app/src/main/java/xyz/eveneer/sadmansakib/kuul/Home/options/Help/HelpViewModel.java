@@ -41,7 +41,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.eveneer.sadmansakib.kuul.Custom.CustomPrompt;
 import xyz.eveneer.sadmansakib.kuul.Data.Dao.PhoneNumberDao;
+import xyz.eveneer.sadmansakib.kuul.Data.Dao.ReportIDDao;
 import xyz.eveneer.sadmansakib.kuul.Data.DataBase.PhoneNumberRoomDatabase;
+import xyz.eveneer.sadmansakib.kuul.Data.DataBase.ReportIDRoomDatabase;
+import xyz.eveneer.sadmansakib.kuul.Data.Entity.ReportID;
 import xyz.eveneer.sadmansakib.kuul.Kuul;
 import xyz.eveneer.sadmansakib.kuul.Models.sos;
 import xyz.eveneer.sadmansakib.kuul.R;
@@ -51,13 +54,19 @@ import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
 
 public class HelpViewModel extends AndroidViewModel {
     private FusedLocationProviderClient mFusedLocationClient;
+    private ReportID reportID;
     private LiveData<String> number;
-
+    private ReportIDDao idDao;
+    private String ID;
     public HelpViewModel(@NonNull Application application) {
         super(application);
         PhoneNumberRoomDatabase phoneDB = PhoneNumberRoomDatabase.getDatabase(application);
+        ReportIDRoomDatabase idDB = ReportIDRoomDatabase.getDatabase(application);
         PhoneNumberDao phoneDao = phoneDB.phoneNumberDao();
+        idDao = idDB.reportIDDao();
+        ID = idDao.getID();
         number = phoneDao.getUserNumber();
+
         mFusedLocationClient = LocationServices
                 .getFusedLocationProviderClient(getApplication().getApplicationContext());
     }
@@ -78,6 +87,12 @@ public class HelpViewModel extends AndroidViewModel {
                             @Override
                             public void onResponse(@NonNull Call<sos> call, @NonNull Response<sos> response) {
                                 if(Objects.requireNonNull(response.body()).getStatus().contains("success")){
+                                    reportID=new ReportID(response.body().getId());
+                                    if(ID == null){
+                                        idDao.insertID(reportID);
+                                    }else{
+                                        idDao.updateID(reportID);
+                                    }
                                     CustomPrompt customPrompt= new CustomPrompt(activity);
                                     customPrompt.show();
                                 }

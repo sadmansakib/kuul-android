@@ -27,6 +27,9 @@ import android.view.Window;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
+import retrofit2.Call;
+import xyz.eveneer.sadmansakib.kuul.Kuul;
+import xyz.eveneer.sadmansakib.kuul.Models.SOS_Response;
 import xyz.eveneer.sadmansakib.kuul.R;
 
 import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
@@ -56,6 +59,7 @@ public class CustomPrompt extends Dialog implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.call_button:
+//                Call<SOS_Response> call = Kuul.getClient().responseOfSOS();
                 Toast.makeText(getContext(),"You will be notified via call",Toast.LENGTH_LONG).show();
                 dismiss();
                 break;
