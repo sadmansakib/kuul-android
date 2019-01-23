@@ -18,14 +18,21 @@
 
 package xyz.eveneer.sadmansakib.kuul.Home.options.Help;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.util.Log;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 
 import java.util.Objects;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
@@ -43,30 +50,46 @@ import xyz.eveneer.sadmansakib.kuul.Report_previous_incident.Report_past;
 import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
 
 public class HelpViewModel extends AndroidViewModel {
+    private FusedLocationProviderClient mFusedLocationClient;
     private LiveData<String> number;
+
     public HelpViewModel(@NonNull Application application) {
         super(application);
         PhoneNumberRoomDatabase phoneDB = PhoneNumberRoomDatabase.getDatabase(application);
         PhoneNumberDao phoneDao = phoneDB.phoneNumberDao();
-        number= phoneDao.getUserNumber();
+        number = phoneDao.getUserNumber();
+        mFusedLocationClient = LocationServices
+                .getFusedLocationProviderClient(getApplication().getApplicationContext());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     void sendSOS(Activity activity) {
-        Call<sos> call = Kuul.getClient().sendSOS(getUserNumber().getValue());
-        call.enqueue(new Callback<sos>() {
-            @Override
-            public void onResponse(@NonNull Call<sos> call, @NonNull Response<sos> response) {
-                if(Objects.requireNonNull(response.body()).getStatus().contains("success")){
-                    CustomPrompt customPrompt= new CustomPrompt(activity);
-                    customPrompt.show();
-                }
-            }
+        if (activity.checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && activity.checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            return;
+        }
+        mFusedLocationClient.getLastLocation()
+                .addOnSuccessListener(location -> {
+                    if (location != null) {
+                        Call<sos> call = Kuul.getClient().sendSOS(getUserNumber().getValue(),
+                                String.valueOf(location.getLatitude())+","+String.valueOf(location.getLongitude()));
+                        call.enqueue(new Callback<sos>() {
+                            @Override
+                            public void onResponse(@NonNull Call<sos> call, @NonNull Response<sos> response) {
+                                if(Objects.requireNonNull(response.body()).getStatus().contains("success")){
+                                    CustomPrompt customPrompt= new CustomPrompt(activity);
+                                    customPrompt.show();
+                                }
+                            }
 
-            @Override
-            public void onFailure(@NonNull Call<sos> call, @NonNull Throwable t) {
-                Log.e(TAG, "onFailure: ", t.getCause());
-            }
-        });
+                            @Override
+                            public void onFailure(@NonNull Call<sos> call, @NonNull Throwable t) {
+                                Log.e(TAG, "onFailure: ", t.getCause());
+                            }
+                        });
+                    }
+                });
     }
 
     void reportPreviousIncident(FragmentActivity activity) {
