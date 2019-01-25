@@ -38,4 +38,8 @@ public class Constants{
     static class oAuth{
         static  final String BASE_URL = "http://kuul.eveneer.xyz/api/";
     }
+
+    public static class sos_id{
+        public static final String SOS_ID = "id";
+    }
 }

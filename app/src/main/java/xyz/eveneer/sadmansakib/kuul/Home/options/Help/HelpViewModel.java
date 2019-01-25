@@ -22,8 +22,10 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -41,32 +43,27 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import xyz.eveneer.sadmansakib.kuul.Custom.CustomPrompt;
 import xyz.eveneer.sadmansakib.kuul.Data.Dao.PhoneNumberDao;
-import xyz.eveneer.sadmansakib.kuul.Data.Dao.ReportIDDao;
 import xyz.eveneer.sadmansakib.kuul.Data.DataBase.PhoneNumberRoomDatabase;
-import xyz.eveneer.sadmansakib.kuul.Data.DataBase.ReportIDRoomDatabase;
-import xyz.eveneer.sadmansakib.kuul.Data.Entity.ReportID;
 import xyz.eveneer.sadmansakib.kuul.Kuul;
 import xyz.eveneer.sadmansakib.kuul.Models.sos;
 import xyz.eveneer.sadmansakib.kuul.R;
 import xyz.eveneer.sadmansakib.kuul.Report_previous_incident.Report_past;
 
 import static androidx.constraintlayout.motion.widget.MotionScene.TAG;
+import static xyz.eveneer.sadmansakib.kuul.Constants.sos_id.SOS_ID;
 
 public class HelpViewModel extends AndroidViewModel {
     private FusedLocationProviderClient mFusedLocationClient;
-    private ReportID reportID;
     private LiveData<String> number;
-    private ReportIDDao idDao;
-    private String ID;
+    private SharedPreferences sharedPreferences;
     public HelpViewModel(@NonNull Application application) {
         super(application);
         PhoneNumberRoomDatabase phoneDB = PhoneNumberRoomDatabase.getDatabase(application);
-        ReportIDRoomDatabase idDB = ReportIDRoomDatabase.getDatabase(application);
         PhoneNumberDao phoneDao = phoneDB.phoneNumberDao();
-        idDao = idDB.reportIDDao();
-        ID = idDao.getID();
         number = phoneDao.getUserNumber();
-
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(
+          getApplication().getApplicationContext()
+        );
         mFusedLocationClient = LocationServices
                 .getFusedLocationProviderClient(getApplication().getApplicationContext());
     }
@@ -87,12 +84,10 @@ public class HelpViewModel extends AndroidViewModel {
                             @Override
                             public void onResponse(@NonNull Call<sos> call, @NonNull Response<sos> response) {
                                 if(Objects.requireNonNull(response.body()).getStatus().contains("success")){
-                                    reportID=new ReportID(response.body().getId());
-                                    if(ID == null){
-                                        idDao.insertID(reportID);
-                                    }else{
-                                        idDao.updateID(reportID);
-                                    }
+                                    SharedPreferences.Editor editor =sharedPreferences.edit();
+                                    editor.putString(SOS_ID,
+                                            response.body().getId());
+                                    editor.apply();
                                     CustomPrompt customPrompt= new CustomPrompt(activity);
                                     customPrompt.show();
                                 }
