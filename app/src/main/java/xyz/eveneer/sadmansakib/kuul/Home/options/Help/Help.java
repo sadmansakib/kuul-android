@@ -18,6 +18,7 @@
 
 package xyz.eveneer.sadmansakib.kuul.Home.options.Help;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,9 +47,11 @@ public class Help extends Fragment {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(HelpViewModel.class);
         // TODO: Use the ViewModel
-        Objects.requireNonNull(getActivity())
-                .findViewById(R.id.help_btn)
-                .setOnClickListener(v -> mViewModel.sendSOS(getActivity()));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Objects.requireNonNull(getActivity())
+                    .findViewById(R.id.help_btn)
+                    .setOnClickListener(v -> mViewModel.sendSOS(getActivity()));
+        }
 
         Objects.requireNonNull(getActivity()).findViewById(R.id.previous_report_btn)
                 .setOnClickListener(v -> mViewModel.reportPreviousIncident(getActivity()));

@@ -21,6 +21,7 @@ package xyz.eveneer.sadmansakib.kuul.Home.options.Help;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -61,9 +62,8 @@ public class HelpViewModel extends AndroidViewModel {
         PhoneNumberRoomDatabase phoneDB = PhoneNumberRoomDatabase.getDatabase(application);
         PhoneNumberDao phoneDao = phoneDB.phoneNumberDao();
         number = phoneDao.getUserNumber();
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(
-          getApplication().getApplicationContext()
-        );
+        sharedPreferences = getApplication()
+                .getApplicationContext().getSharedPreferences("SOS_ID_DB", Context.MODE_PRIVATE);
         mFusedLocationClient = LocationServices
                 .getFusedLocationProviderClient(getApplication().getApplicationContext());
     }
