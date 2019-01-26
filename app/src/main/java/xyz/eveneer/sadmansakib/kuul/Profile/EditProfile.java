@@ -19,15 +19,23 @@
 package xyz.eveneer.sadmansakib.kuul.Profile;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.Objects;
 
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import xyz.eveneer.sadmansakib.kuul.R;
 
 public class EditProfile extends AppCompatActivity {
+
+    private EditProfileViewModel editProfileViewModel;
+    EditText gender,name,address;
+    Button edit_profile_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,5 +45,18 @@ public class EditProfile extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        gender = findViewById(R.id.gender);
+        name = findViewById(R.id.name);
+        address = findViewById(R.id.address);
+        edit_profile_button = findViewById(R.id.edit_profile_button);
+
+        editProfileViewModel = ViewModelProviders.of(this).get(EditProfileViewModel.class);
+    }
+
+    public void updateUserProfile(View view) {
+        editProfileViewModel.update(name.getText().toString(),
+                gender.getText().toString(),
+                address.getText().toString());
     }
 }

@@ -26,6 +26,8 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import xyz.eveneer.sadmansakib.kuul.Models.Register;
 import xyz.eveneer.sadmansakib.kuul.Models.SOS_Response;
+import xyz.eveneer.sadmansakib.kuul.Models.ShowProfileInfo;
+import xyz.eveneer.sadmansakib.kuul.Models.UpdateProfile;
 import xyz.eveneer.sadmansakib.kuul.Models.UserExistanceCheck;
 import xyz.eveneer.sadmansakib.kuul.Models.sos;
 
@@ -57,5 +59,22 @@ public interface KuulServerClient {
     Call<SOS_Response> responseOfSOS(
             @Field(value = "id") String ID,
             @Field(value = "response_type") Integer type
+    );
+
+    @FormUrlEncoded
+    @POST("update")
+    Call<UpdateProfile> updateProfile(
+            @Field("phone") String phone,
+            @Field("name") String name,
+            @Field("gender") String gender,
+            @Field("address") String address,
+            @Field("notify_social") Boolean notify_social,
+            @Field("notify_contacts") Boolean notify_contacts
+    );
+
+    @FormUrlEncoded
+    @POST("show-profile-info")
+    Call<ShowProfileInfo> showProfile(
+            @Field(value = "phone") String phone
     );
 }

@@ -85,7 +85,7 @@ public class CustomPrompt extends Dialog implements View.OnClickListener {
                 break;
             case R.id.message_button:
                 Call<SOS_Response> call2 = Kuul.getClient().responseOfSOS(
-                        current_activity.getSharedPreferences("SOS_ID_DB",Context.MODE_PRIVATE)
+                        current_activity.getSharedPreferences("Preference_DB",Context.MODE_PRIVATE)
                                 .getString(SOS_ID,null),1);
                 call2.enqueue(new Callback<SOS_Response>() {
                     @Override

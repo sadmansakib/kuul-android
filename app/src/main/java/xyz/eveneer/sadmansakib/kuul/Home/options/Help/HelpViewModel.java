@@ -26,7 +26,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -63,7 +62,7 @@ public class HelpViewModel extends AndroidViewModel {
         PhoneNumberDao phoneDao = phoneDB.phoneNumberDao();
         number = phoneDao.getUserNumber();
         sharedPreferences = getApplication()
-                .getApplicationContext().getSharedPreferences("SOS_ID_DB", Context.MODE_PRIVATE);
+                .getApplicationContext().getSharedPreferences("Preference_DB", Context.MODE_PRIVATE);
         mFusedLocationClient = LocationServices
                 .getFusedLocationProviderClient(getApplication().getApplicationContext());
     }
@@ -78,7 +77,7 @@ public class HelpViewModel extends AndroidViewModel {
         mFusedLocationClient.getLastLocation()
                 .addOnSuccessListener(location -> {
                     if (location != null) {
-                        Call<sos> call = Kuul.getClient().sendSOS(getUserNumber().getValue(),
+                        Call<sos> call = Kuul.getClient().sendSOS(number.getValue(),
                                 String.valueOf(location.getLatitude())+","+String.valueOf(location.getLongitude()));
                         call.enqueue(new Callback<sos>() {
                             @Override
