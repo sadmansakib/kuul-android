@@ -19,6 +19,7 @@
 package xyz.eveneer.sadmansakib.kuul.Profile;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,14 +29,25 @@ import java.util.Objects;
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import xyz.eveneer.sadmansakib.kuul.Data.Dao.PhoneNumberDao;
+import xyz.eveneer.sadmansakib.kuul.Data.DataBase.PhoneNumberRoomDatabase;
+import xyz.eveneer.sadmansakib.kuul.Kuul;
+import xyz.eveneer.sadmansakib.kuul.Models.ShowProfileInfo;
 import xyz.eveneer.sadmansakib.kuul.R;
 
 public class EditProfile extends AppCompatActivity {
 
+    private static final String TAG = EditProfile.class.getSimpleName() ;
     private EditProfileViewModel editProfileViewModel;
     EditText gender,name,address;
     Button edit_profile_button;
+
+    private LiveData<String> number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +63,30 @@ public class EditProfile extends AppCompatActivity {
         address = findViewById(R.id.address);
         edit_profile_button = findViewById(R.id.edit_profile_button);
 
+        PhoneNumberRoomDatabase phoneDB = PhoneNumberRoomDatabase.getDatabase(this);
+        PhoneNumberDao phoneDao = phoneDB.phoneNumberDao();
+        number = phoneDao.getUserNumber();
+
+        setValues();
+
         editProfileViewModel = ViewModelProviders.of(this).get(EditProfileViewModel.class);
+    }
+
+    private void setValues() {
+        Call<ShowProfileInfo> call = Kuul.getClient().showProfile(number.getValue());
+        call.enqueue(new Callback<ShowProfileInfo>() {
+            @Override
+            public void onResponse(Call<ShowProfileInfo> call, Response<ShowProfileInfo> response) {
+                gender.setText(response.body().getGender());
+                name.setText(response.body().getName());
+                address.setText(response.body().getAddress());
+            }
+
+            @Override
+            public void onFailure(Call<ShowProfileInfo> call, Throwable t) {
+                Log.e(TAG, "onFailure: ",t.getCause() );
+            }
+        });
     }
 
     public void updateUserProfile(View view) {
