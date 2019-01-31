@@ -19,6 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".TrustedContacts.Trusted_Contact"></activity>
+
         <meta-data
             android:name="com.facebook.accountkit.ApplicationName"
             android:value="@string/app_name" />
@@ -61,22 +63,24 @@
             android:name=".Report_previous_incident.Report_past"
             android:configChanges="orientation|keyboardHidden"
             tools:ignore="InnerclassSeparator" />
-        <activity android:name=".Profile.EditProfile"
+        <activity
+            android:name=".Profile.EditProfile"
             android:label="Edit Profile"
-            tools:ignore="InnerclassSeparator"
-            android:parentActivityName=".Home.Home">
+            android:parentActivityName=".Home.Home"
+            tools:ignore="InnerclassSeparator">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Home.Home"/>
+                android:value=".Home.Home" />
         </activity>
-        <activity android:name=".Home.options.Settings.Settings"
+        <activity
+            android:name=".Home.options.Settings.Settings"
             android:label="Settings"
             android:parentActivityName=".Home.Home"
             android:theme="@style/SettingsTheme"
             tools:ignore="InnerclassSeparator">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Home.Home"/>
+                android:value=".Home.Home" />
         </activity>
     </application>
 

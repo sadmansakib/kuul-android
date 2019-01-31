@@ -38,10 +38,12 @@
         android:title="General">
 
         <CheckBoxPreference
+            android:key="notify_trusted_contacts"
             android:title="Notify Trusted Contacts"
             android:summary="Notify persons you trust about updates of yourself when you are in danger"
             android:checked="false"/>
         <CheckBoxPreference
+            android:key="notify_social_media"
             android:title="Notify by Facebook"
             android:summary="Post in facebook group about your situation when you are in danger"
             android:checked="false"/>

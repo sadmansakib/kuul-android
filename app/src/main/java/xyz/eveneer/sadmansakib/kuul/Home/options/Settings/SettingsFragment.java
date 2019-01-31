@@ -24,6 +24,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.preference.CheckBoxPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import xyz.eveneer.sadmansakib.kuul.R;
@@ -44,6 +45,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         Preference edit_profile = findPreference("Edit_profile");
         edit_profile.setOnPreferenceClickListener(preference -> {
             settingsViewModel.goProfileEditor();
+            return false;
+        });
+        CheckBoxPreference notify_trusted_contacts = findPreference("notify_trusted_contacts");
+        notify_trusted_contacts.setOnPreferenceClickListener(preference -> {
+            if(notify_trusted_contacts.isChecked()){
+                settingsViewModel.goAddTrustedContacts();
+                notify_trusted_contacts.setSummaryOn("Your trusted contacts will be notified");
+            }
             return false;
         });
     }

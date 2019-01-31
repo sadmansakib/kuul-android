@@ -25,14 +25,14 @@ import xyz.eveneer.sadmansakib.kuul.R;
 
 public class Settings extends AppCompatActivity {
 
-    private SettingsFragment settingsFragment;
+    SettingsFragment settingsFragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         if(savedInstanceState == null){
-            settingsFragment=new SettingsFragment();
-            getSupportFragmentManager().beginTransaction().add(R.id.settings_container,settingsFragment,"Settings").commit();
+            settingsFragment =new SettingsFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.settings_container, settingsFragment,"Settings").commit();
         }else{
             settingsFragment = (SettingsFragment) getSupportFragmentManager().findFragmentByTag("Settings");
         }

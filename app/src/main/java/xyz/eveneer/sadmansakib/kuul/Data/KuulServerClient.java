@@ -73,7 +73,7 @@ public interface KuulServerClient {
     );
 
     @FormUrlEncoded
-    @POST("show-profile-info")
+    @GET("show-profile-info")
     Call<ShowProfileInfo> showProfile(
             @Field(value = "phone") String phone
     );

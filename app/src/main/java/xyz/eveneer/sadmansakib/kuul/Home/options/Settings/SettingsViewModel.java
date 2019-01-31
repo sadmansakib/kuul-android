@@ -25,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import xyz.eveneer.sadmansakib.kuul.Profile.EditProfile;
 import xyz.eveneer.sadmansakib.kuul.R;
+import xyz.eveneer.sadmansakib.kuul.TrustedContacts.Trusted_Contact;
 
 public class SettingsViewModel extends AndroidViewModel {
 
@@ -37,5 +38,11 @@ public class SettingsViewModel extends AndroidViewModel {
                 startActivity(new Intent(getApplication().getApplicationContext(),
                         EditProfile.class)
                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+    }
+
+    void goAddTrustedContacts() {
+        getApplication().getApplicationContext().
+                startActivity(new Intent(getApplication().getApplicationContext(),
+                        Trusted_Contact.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
     }
 }
