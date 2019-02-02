@@ -24,6 +24,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import xyz.eveneer.sadmansakib.kuul.Models.Register;
 import xyz.eveneer.sadmansakib.kuul.Models.SOS_Response;
 import xyz.eveneer.sadmansakib.kuul.Models.ShowProfileInfo;
@@ -71,10 +72,8 @@ public interface KuulServerClient {
             @Field("notify_social") Boolean notify_social,
             @Field("notify_contacts") Boolean notify_contacts
     );
-
-    @FormUrlEncoded
     @GET("show-profile-info")
     Call<ShowProfileInfo> showProfile(
-            @Field(value = "phone") String phone
+            @Query(value = "phone") String phone
     );
 }

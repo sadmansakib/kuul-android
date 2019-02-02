@@ -19,6 +19,8 @@
 package xyz.eveneer.sadmansakib.kuul.Home.options.Settings;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -35,13 +37,20 @@ import xyz.eveneer.sadmansakib.kuul.R;
 public class SettingsFragment extends PreferenceFragmentCompat {
 
      private SettingsViewModel settingsViewModel;
+    private SharedPreferences sharedPreferences;
 
     public SettingsFragment(){
-
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        sharedPreferences = getContext().getSharedPreferences("Preference_DB", Context.MODE_PRIVATE);
+    }
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-       setPreferencesFromResource(R.xml.preference_main,rootKey);
+        setPreferencesFromResource(R.xml.preference_main,rootKey);
         Preference edit_profile = findPreference("Edit_profile");
         edit_profile.setOnPreferenceClickListener(preference -> {
             settingsViewModel.goProfileEditor();
@@ -50,8 +59,23 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         CheckBoxPreference notify_trusted_contacts = findPreference("notify_trusted_contacts");
         notify_trusted_contacts.setOnPreferenceClickListener(preference -> {
             if(notify_trusted_contacts.isChecked()){
-                settingsViewModel.goAddTrustedContacts();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("notify_contacts", true);
+                editor.apply();
                 notify_trusted_contacts.setSummaryOn("Your trusted contacts will be notified");
+                settingsViewModel.goAddTrustedContacts();
+                return true;
+            }
+            return false;
+        });
+
+        CheckBoxPreference notify_social_media = findPreference("notify_social_media");
+        notify_social_media.setOnPreferenceClickListener(preference -> {
+            if (notify_social_media.isChecked()) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean("notify_social", true);
+                editor.apply();
+                return true;
             }
             return false;
         });

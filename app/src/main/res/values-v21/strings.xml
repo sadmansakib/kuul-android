@@ -20,4 +20,7 @@
 <resources>
     <string name="profile_edit_title">Here you can edit your profile. Please give real information so that we can identify you in case anything happens and you are in danger. Please note that Phone Number cannot be changed.</string>
     <string name="save_profile_btn">Save Profile</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="add_contacts">Add Contacts</string>
 </resources>

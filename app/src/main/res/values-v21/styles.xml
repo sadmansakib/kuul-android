@@ -16,4 +16,9 @@
   ~ **/
   -->
 
-<resources></resources>
+<resources>
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">@color/form_text_color</item>
+    </style>
+</resources>
