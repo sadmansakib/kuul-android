@@ -28,6 +28,7 @@ import retrofit2.http.Query;
 import xyz.eveneer.sadmansakib.kuul.Models.Register;
 import xyz.eveneer.sadmansakib.kuul.Models.SOS_Response;
 import xyz.eveneer.sadmansakib.kuul.Models.ShowProfileInfo;
+import xyz.eveneer.sadmansakib.kuul.Models.TrustedContacts;
 import xyz.eveneer.sadmansakib.kuul.Models.UpdateProfile;
 import xyz.eveneer.sadmansakib.kuul.Models.UserExistanceCheck;
 import xyz.eveneer.sadmansakib.kuul.Models.sos;
@@ -72,8 +73,14 @@ public interface KuulServerClient {
             @Field("notify_social") Boolean notify_social,
             @Field("notify_contacts") Boolean notify_contacts
     );
+
     @GET("show-profile-info")
     Call<ShowProfileInfo> showProfile(
+            @Query(value = "phone") String phone
+    );
+
+    @GET("show-contacts")
+    Call<TrustedContacts> showContacts(
             @Query(value = "phone") String phone
     );
 }
