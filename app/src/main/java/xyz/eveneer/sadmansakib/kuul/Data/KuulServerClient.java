@@ -25,6 +25,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import xyz.eveneer.sadmansakib.kuul.Models.AddContacts;
 import xyz.eveneer.sadmansakib.kuul.Models.Register;
 import xyz.eveneer.sadmansakib.kuul.Models.SOS_Response;
 import xyz.eveneer.sadmansakib.kuul.Models.ShowProfileInfo;
@@ -82,5 +83,13 @@ public interface KuulServerClient {
     @GET("show-contacts")
     Call<TrustedContacts> showContacts(
             @Query(value = "phone") String phone
+    );
+
+    @POST
+    @FormUrlEncoded
+    Call<AddContacts> addContacts(
+            @Field("phone") String phone,
+            @Field("name") String name,
+            @Field("contact_phone") String contact_number
     );
 }
