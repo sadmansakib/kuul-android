@@ -151,5 +151,7 @@
     <string name="name">Name</string>
     <string name="phone">Phone</string>
     <string name="add_contacts">Add Contacts</string>
+    <string name="victim_type">Victim Type :</string>
+    <string name="vic_address">Address</string>
 
 </resources>

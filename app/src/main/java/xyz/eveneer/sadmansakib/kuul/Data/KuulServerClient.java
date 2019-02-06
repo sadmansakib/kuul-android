@@ -27,6 +27,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import xyz.eveneer.sadmansakib.kuul.Models.AddContacts;
 import xyz.eveneer.sadmansakib.kuul.Models.Register;
+import xyz.eveneer.sadmansakib.kuul.Models.ReportPreviousIncident;
 import xyz.eveneer.sadmansakib.kuul.Models.SOS_Response;
 import xyz.eveneer.sadmansakib.kuul.Models.ShowProfileInfo;
 import xyz.eveneer.sadmansakib.kuul.Models.TrustedContacts;
@@ -85,11 +86,20 @@ public interface KuulServerClient {
             @Query(value = "phone") String phone
     );
 
-    @POST
+    @POST("add-contact")
     @FormUrlEncoded
     Call<AddContacts> addContacts(
             @Field("phone") String phone,
             @Field("name") String name,
             @Field("contact_phone") String contact_number
+    );
+
+    @POST("report")
+    @FormUrlEncoded
+    Call<ReportPreviousIncident> submitPreviousIncident(
+            @Field("phone") String phone,
+            @Field("address") String address,
+            @Field("description") String desc,
+            @Field("victim_type") int type
     );
 }

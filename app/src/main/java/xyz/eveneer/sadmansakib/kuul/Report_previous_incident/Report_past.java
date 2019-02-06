@@ -20,14 +20,22 @@ package xyz.eveneer.sadmansakib.kuul.Report_previous_incident;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 import xyz.eveneer.sadmansakib.kuul.R;
 
 public class Report_past extends AppCompatActivity {
+    Spinner spinner;
+    EditText date, name, description, address;
+    ReportPastViewModel reportPastViewModel;
+    int size;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +45,21 @@ public class Report_past extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Report Incident");
+        spinner = findViewById(R.id.spinner);
+        date = findViewById(R.id.incident_date);
+        name = findViewById(R.id.vic_name);
+        description = findViewById(R.id.description_event);
+        address = findViewById(R.id.vic_address);
+
+        int spinner_pos = spinner.getSelectedItemPosition();
+        String[] size_values = getResources().getStringArray(R.array.vic_values);
+        size = Integer.valueOf(size_values[spinner_pos]);
 
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        reportPastViewModel = ViewModelProviders.of(this).get(ReportPastViewModel.class);
     }
 
     @Override
@@ -51,5 +69,14 @@ public class Report_past extends AppCompatActivity {
             overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void report_incident(View view) {
+        reportPastViewModel.sendPreviousIncidentReports(
+                date.getText().toString(),
+                name.getText().toString(),
+                address.getText().toString(),
+                description.getText().toString(),
+                size);
     }
 }
